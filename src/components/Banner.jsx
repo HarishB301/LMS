@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {bannerStyles,customStyles} from '../assets/dummyStyles'
-import {floatingIcons} from '../assets/dummyBanner'
-import { Sparkle } from 'lucide-react'
+import {features, floatingIcons} from '../assets/dummyBanner'
+import { CircleCheckBig, Sparkle,X } from 'lucide-react'
+import bannerimg from '../assets/Bannerimage.jpg'
+import video from '../assets/BannerVideo.mp4'
 const Banner = () => {
+  const [showVideo,setShowVideo] = useState(false)
   return (
     <div className={bannerStyles.container}>
         <div className={bannerStyles.floatingIconsWrapper}>
@@ -24,21 +27,80 @@ const Banner = () => {
             <div className={bannerStyles.leftContent}>
                 <span className={bannerStyles.badge}>
                      <Sparkle className={bannerStyles.badgeIcon}/>
-                        New Features Available
-
-
-
-
-
-
-                        
+                        New Features Available                       
                 </span>
+                <h1 className={bannerStyles.heading}>
+                  <span className={bannerStyles.headingSpan1}>Build Amazing</span>
+                  <span className={bannerStyles.headingSpan2}>Digital Products</span>
+                </h1>
+                <p className={bannerStyles.description}>creating beautiful, responsive web application with our
+                   powerful tools and components.Start building your next project today
+                </p>
 
+                {/* features*/}
+                <div className={bannerStyles.featuresGrid}>
+                  {features.map((features,i)=>{
+                    <div key={i} className={bannerStyles.featureIconContainer}>
+                      <div className={bannerStyles.featureIconContainer}>
+                         <span className={`${bannerStyles.featureIcon} text-${features.color}-500`}>
+                            <CircleCheckBig size={16}></CircleCheckBig>
+                      </span>
+                      </div>
+                      <span className={bannerStyles.featureText}>
+                        {
+                          features.text
+                        }
+                      </span>
+                    </div>
+                    
+                  })}
+                </div>
+                {/*button*/}
+                <div className={bannerStyles.buttonsContainer}>
+                   <a href="/courses" className={bannerStyles.buttonGetStarted}>Get Started</a>
+                   <button onClick={()=>setShowVideo(true)} className={bannerStyles.buttonViewDemo}>
+                         View Demo
+                   </button>
+                </div>
+
+            </div>
+            <div className={bannerStyles.imageContainer}>
+               <img src={bannerimg} alt="banner img" className={bannerStyles.image} />
             </div>
 
         </div>
-
+        {/*Video*/}
+        {
+          showVideo && (
+            <div className={bannerStyles.videoModal.overlay}>
+                  <div className={bannerStyles.videoModal.container}>
+                      <iframe src={video} className={bannerStyles.videoModal.iframe}
+                      title="Demo Vedio" 
+                       allow="autoplay; encrypted-media"
+                       allowFullScreen></iframe>
+                       <button onClick={()=>setShowVideo(false)} className={bannerStyles.videoModal.closeButton}>
+                        <span>
+                           <X className={bannerStyles.videoModal.closeIcon}/>
+                        </span>
+                        </button>
+                  </div>
+                  
+            </div>
+          )
+        }
+       
       </div>
+      <style jsx>{customStyles}</style>
+      {/* Inline Animations */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
       
     </div>
   )

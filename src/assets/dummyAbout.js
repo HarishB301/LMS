@@ -105,7 +105,7 @@ export const missionVisionValues = [
       "Innovation in education",
     ],
     color: "from-purple-600 to-pink-600",
-    bgColor: "bg-gradient-to-br from-purple-50 to-pink-100",
+    bgColor: "bg-gradient-to-br from-purple-100 to-pink-120",
   },
   {
     type: "values",
@@ -122,7 +122,7 @@ export const missionVisionValues = [
       "Community & collaboration",
     ],
     color: "from-green-600 to-emerald-600",
-    bgColor: "bg-gradient-to-br from-green-50 to-emerald-100",
+    bgColor: "bg-gradient-to-br from-green-100 to-emerald-100",
   },
 ];
 

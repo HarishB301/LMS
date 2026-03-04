@@ -1,4 +1,4 @@
-import { lazy, useEffect ,useState} from 'react'
+import { useEffect ,useState} from 'react'
 import {homeCoursesStyles} from '../assets/dummyStyles'
 import {coursesData} from '../assets/dummyHdata'
 import {useNavigate} from 'react-router-dom'
