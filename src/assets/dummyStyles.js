@@ -496,10 +496,10 @@ export const coursePageStyles = {
   
   // Search bar
   searchContainer: "max-w-2xl mx-auto mb-8 md:mb-12 relative group px-2 sm:px-0",
-  searchGradient: "absolute -inset-1 bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 rounded-3xl blur-lg opacity-20 group-hover:opacity-60 transition-opacity duration-700 animate-gradient-x",
-  searchInputContainer: "relative bg-white/80 backdrop-blur-lg border border-transparent group-hover:border-blue-400 rounded-3xl shadow-xl transition-all duration-500",
+  searchGradient: "absolute -inset-1 bg-gradient-to-r from-purple-800 via-blue-800 to-indigo-500 rounded-3xl blur-lg opacity-20 group-hover:opacity-60 transition-opacity duration-700 animate-gradient-x",
+  searchInputContainer: "relative bg-white/80 backdrop-blur-lg border border-transparent group-hover:border-blue-700 rounded-3xl shadow-xl transition-all duration-500",
   searchIconContainer: "absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none",
-  searchIcon: "w-5 h-5 text-blue-500 group-hover:text-indigo-600 transition-colors duration-500",
+  searchIcon: "w-5 h-5 text-blue-700 group-hover:text-indigo-600 transition-colors duration-500",
   searchInput: "w-full pl-12 pr-10 py-3 rounded-3xl bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-0 font-medium text-sm sm:text-base",
   clearButton: "absolute inset-y-0 right-0 pr-3 sm:pr-4 flex items-center text-gray-400 hover:text-red-500 transition-colors duration-300",
   
