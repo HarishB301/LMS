@@ -1,24 +1,96 @@
 
 import './App.css'
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, useLocation} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact.'
 import Faculty from './pages/Faculty'
 import Course from './pages/Course'
+import {  useEffect, useState } from 'react'
+ import { ArrowUp } from 'lucide-react'
+import CourseDetailPageHome from './pages/CourseDetailPageHome.'
+import CouseDetailPage from './pages/CouseDetailPage'
+ const ProtectedRoute=({children})=>{
+  const location = useLocation();
+  const isAuthenticated=()=>{
+    const token=localStorage.getItem('token');
+    return Boolean(token);
+  }
+
+  if(!isAuthenticated()){
+    return <Navigate to='/' state={{from: location}} replace />
+  }
+
+  return children;
+ };
+
+ const ScrollToTopRouteChange=()=>{
+  const location = useLocation();
+  useEffect(()=>{
+    window.scrollTo({top:0,left:0,behavior:'auto'})
+  },[location])
+ }
+
+ const ScrollTopButton=({threshold=200,showOnMount=false})=>{
+  const [ visible,setVisible] =useState(!!showOnMount);
+
+  useEffect(()=>{
+    const onScroll=()=>{
+      setVisible(window.scrollY>threshold)
+    };
+    onScroll();
+    window.addEventListener('scroll',onScroll,{passive:true});
+    return ()=> window.removeEventListener('scroll',onScroll);
+  },[threshold]);
+  const scrollToTop=()=>{
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
+
+  if(!visible) return null;
+
+  return(
+    <button onScroll={scrollToTop}
+    className='fixed right-6 bottom-6 z-50 p-2 rounded-full focus:outline-none focus:ring-sky-300 
+     backdrop-blur-sm border border-white/20 shadow-lg cursor-pointer transition-transform'>
+       <ArrowUp className='w-6 h-6 text-sky-600 drop-shadow-sm'></ArrowUp>
+    </button>
+  )
+ };
+
+
 function App() {
- 
 
   return (
-   
-    
-      <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/about' element={<About/>}></Route>
-        <Route path='/contact' element={<Contact/>}></Route>
-        <Route path='/faculty' element={<Faculty/>}></Route>
-        <Route path='/courses' element={<Course/>}></Route>
-      </Routes>
+   <>
+      
+      
+      <ScrollToTopRouteChange/>
+          <Routes>
+              <Route path='/' element={<Home/>}></Route>
+              <Route path='/about' element={<About/>}></Route>
+              <Route path='/contact' element={<Contact/>}></Route>
+              <Route path='/faculty' element={<Faculty/>}></Route>
+              <Route path='/courses' element={<Course/>}></Route>
+              <Route path='/course/:id'
+              element={
+                <ProtectedRoute>
+                  <CourseDetailPageHome/>
+                </ProtectedRoute>
+              }>
+
+              </Route>
+
+              <Route path='/courses/:id'
+              element={
+                <ProtectedRoute>
+                  <CouseDetailPage/>
+                </ProtectedRoute>
+              }>
+
+              </Route>
+          </Routes>
+      <ScrollTopButton  threshold={250}/> 
+   </>
 
   )
 }
